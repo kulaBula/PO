@@ -22,9 +22,9 @@ public class BazaKont {
             System.out.println("\n--- 3. Odczyt danych ---");
             ResultSet rs = stmt.executeQuery("SELECT * FROM konta");
             while (rs.next()) {
-                System.out.println("ID: " + rs.getInt("id") + 
-                                   " | Imię: " + rs.getString("imie") + 
-                                   " | Email: " + rs.getString("email"));
+                // Dopasuj nazwy kolumn do tych z CREATE TABLE
+                System.out.println("PESEL: " + rs.getString("nrPesel") + 
+                                " | Saldo: " + rs.getDouble("saldo"));
             }
         
         }catch (SQLException e) {
