@@ -4,8 +4,8 @@ public class AplikacjaBankowa {
         BankService bankService = BankService.getInstance();
 
         // Tworzenie kont za pomocą Factory
-        Konto mojeOsobiste = bankService.stworzKonto("OSOBISTE", 1000.0, 500.0);
-        Konto mojeOszczednosci = bankService.stworzKonto("OSZCZEDNOSCIOWE", 5000.0, 0.05);
+        Konto mojeOsobiste = bankService.stworzKonto("OSOBISTE", 1000.0, 500.0, "1111111111");
+        Konto mojeOszczednosci = bankService.stworzKonto("OSZCZEDNOSCIOWE", 5000.0, 0.05, "1111111111");
 
         // Testowanie działań
         System.out.println("--- Test Konta Osobistego ---");
