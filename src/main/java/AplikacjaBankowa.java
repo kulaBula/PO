@@ -68,6 +68,7 @@ public class AplikacjaBankowa {
             System.out.println("2. Utwórz nowe konto");
             System.out.println("3. Przelew");
             System.out.println("4. Wyloguj");
+            System.out.println("5. Pobierz wyciąg z konta");
             System.out.print("Wybór: ");
             
             String opcja = scanner.nextLine();
@@ -134,6 +135,17 @@ public class AplikacjaBankowa {
                 case "4":
                     zalogowany = false;
                     System.out.println("Wylogowano.");
+                    break;
+
+                case "5":
+                    System.out.print("Podaj numer swojego konta do wyciągu: ");
+                    int idKonta = Integer.parseInt(scanner.nextLine());
+                    // Sprawdzamy czy konto należy do zalogowanego klienta
+                    if (kontaRepo.zaladujKonto(idKonta, klient.pesel) != null) {
+                        new HistoriaRepository().wyswietlWyciag(idKonta);
+                    } else {
+                        System.out.println("Nieprawdłowy numer konta.");
+                    }
                     break;
                 default:
                     System.out.println("Nieznana opcja.");

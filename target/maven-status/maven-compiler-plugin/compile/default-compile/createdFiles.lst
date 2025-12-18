@@ -1,0 +1,13 @@
+KontoOsobiste.class
+KlienciRepository.class
+BankService.class
+BazaKlientow.class
+Konto.class
+DataBaseConnector.class
+Klient.class
+KontoOszczednosciowe.class
+Transakcja.class
+BazaKont.class
+AplikacjaBankowa.class
+KontaRepository.class
+ClientDBConnector.class
