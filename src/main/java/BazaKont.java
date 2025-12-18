@@ -9,7 +9,8 @@ public class BazaKont {
             System.out.println("\n--- 1. Tworzenie tabeli ---");
             // Uwaga: W SQLite używamy INTEGER PRIMARY KEY AUTOINCREMENT
             String createTableSQL = "CREATE TABLE IF NOT EXISTS konta (" +
-                    "nrPesel TEXT, " + 
+                    "id INTEGER PRIMARY KEY AUTOINCREMENT, " + //nr konta
+                    "nrPesel TEXT, " + //nr pesel aby powiązać konta z klientami
                     "saldo FLOAT)";
             stmt.execute(createTableSQL);
             System.out.println("Tabela gotowa.");

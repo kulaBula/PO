@@ -1,13 +1,17 @@
 public class KontoOsobiste implements Konto {
     private double saldo;
     private double limitDebetu; 
-    public KontoOsobiste(double poczatkoweSaldo, double limitDebetu) {
+    private int nrKonta;
+    private KontaRepository repo = new KontaRepository();
+    public KontoOsobiste(double poczatkoweSaldo, double limitDebetu, int idKonta) {
         this.saldo = poczatkoweSaldo;
         this.limitDebetu = limitDebetu;
+        this.nrKonta = idKonta;
     }
      @Override public Double wplac(Double kwota){
         if(kwota > 0){
             this.saldo += kwota;
+            repo.updateSaldo(this.nrKonta, this.saldo);
             System.out.println("Wpłacono " + kwota + ". Nowe saldo: " + this.saldo);
         }
         return this.saldo;
@@ -18,6 +22,7 @@ public class KontoOsobiste implements Konto {
         // Możliwa wypłata, o ile nie przekracza salda + limitu debetu
         if (kwota > 0 && kwota <= mozliwaWyplata) {
             saldo -= kwota;
+            repo.updateSaldo(this.nrKonta, this.saldo);
             System.out.println("Wypłacono " + kwota + ". Nowe saldo: " + saldo);
             return saldo;
         }
