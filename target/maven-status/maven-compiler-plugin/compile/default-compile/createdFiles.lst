@@ -1,3 +1,4 @@
+HistoriaRepository.class
 KontoOsobiste.class
 KlienciRepository.class
 BankService.class
@@ -6,6 +7,7 @@ Konto.class
 DataBaseConnector.class
 Klient.class
 KontoOszczednosciowe.class
+HistoriaDBConnector.class
 Transakcja.class
 BazaKont.class
 AplikacjaBankowa.class

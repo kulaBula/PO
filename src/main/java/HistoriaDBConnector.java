@@ -4,6 +4,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class HistoriaDBConnector {
+    //private static final String URL = "jdbc:sqlite:HistoriaTransakcji.db";
     private static final String URL = "jdbc:sqlite:HistoriaTransakcji.db";
 
     public static Connection getConnection() throws SQLException {

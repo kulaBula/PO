@@ -8,6 +8,8 @@
 /home/oliwer_miller/PO/src/main/java/KontoOsobiste.java
 /home/oliwer_miller/PO/src/main/java/Transakcja.java
 /home/oliwer_miller/PO/src/main/java/DataBaseConnector.java
+/home/oliwer_miller/PO/src/main/java/HistoriaDBConnector.java
 /home/oliwer_miller/PO/src/main/java/ClientDBConnector.java
+/home/oliwer_miller/PO/src/main/java/HistoriaRepository.java
 /home/oliwer_miller/PO/src/main/java/AplikacjaBankowa.java
 /home/oliwer_miller/PO/src/main/java/BankService.java
