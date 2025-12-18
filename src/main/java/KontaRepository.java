@@ -39,5 +39,31 @@ public class KontaRepository {
     } catch (SQLException e) {
         System.err.println("Błąd aktualizacji salda: " + e.getMessage());
     }
-}
+    }
+    public void wyswietlKontaKlienta(String peselKlienta) {
+        String sql = "SELECT * FROM konta WHERE nrPesel = ?";
+        
+        try (Connection conn = DataBaseConnector.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            
+            pstmt.setString(1, peselKlienta);
+            ResultSet rs = pstmt.executeQuery();
+            
+            boolean znaleziono = false;
+            System.out.println("\n--- TWOJE KONTA ---");
+            while(rs.next()) {
+                znaleziono = true;
+                int id = rs.getInt("id");
+                double saldo = rs.getDouble("saldo");
+                System.out.println("ID Konta: " + id + " | Saldo: " + saldo + " PLN");
+            }
+            
+            if(!znaleziono) {
+                System.out.println("Brak otwartych kont dla numeru PESEL: " + peselKlienta);
+            }
+            
+        } catch (SQLException e) {
+            System.out.println("TUU Błąd pobierania kont: " + e.getMessage());
+        }
+    }
 }
