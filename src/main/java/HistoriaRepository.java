@@ -22,7 +22,7 @@ public class HistoriaRepository {
             System.err.println("Błąd inicjalizacji bazy historii: " + e.getMessage());
         }
     }
-
+    //zastąpiona funkcja
     /*public void inicjalizujBaze() {
     String sql = "CREATE TABLE IF NOT EXISTS historia (" +
                  "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
