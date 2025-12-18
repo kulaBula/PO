@@ -20,11 +20,12 @@ public class BankService {
         if (typ == null) {
             return null;
         }
-        int idNowegoKonta = repo.addKonto(nrPesel, saldoPoczatkowe); // Tworzymy nowe konto w bazie i pobieramy id nowego konta
         if (typ.equalsIgnoreCase("OSOBISTE")) {
+            int idNowegoKonta = repo.addKontoOsobiste(nrPesel, saldoPoczatkowe, parametrDodatkowy);
             return new KontoOsobiste(saldoPoczatkowe, parametrDodatkowy, idNowegoKonta);
         } else if (typ.equalsIgnoreCase("OSZCZEDNOSCIOWE")) {
-            return new KontoOszczednosciowe(saldoPoczatkowe, parametrDodatkowy, idNowegoKonta);
+            int idNowegoKonta = repo.addKontoOszczednosciowe(nrPesel, saldoPoczatkowe);
+            return new KontoOszczednosciowe(saldoPoczatkowe, idNowegoKonta);
         }
         
         throw new IllegalArgumentException("Nieznany typ konta: " + typ);

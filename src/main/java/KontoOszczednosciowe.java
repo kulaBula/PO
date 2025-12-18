@@ -1,12 +1,11 @@
 public class KontoOszczednosciowe implements Konto {
     private double saldo;
-    private final double oprocentowanie;
+    private final double oprocentowanie = 0.05;
     private int nrKonta;
     private KontaRepository repo = new KontaRepository();
     // Konstruktor
-    public KontoOszczednosciowe(double poczatkoweSaldo, double oprocentowanie, int idKonta){
+    public KontoOszczednosciowe(double poczatkoweSaldo, int idKonta){
         this.saldo = poczatkoweSaldo;
-        this.oprocentowanie = oprocentowanie;
         this.nrKonta = idKonta;
     };
     // Implementacja
@@ -28,10 +27,9 @@ public class KontoOszczednosciowe implements Konto {
         System.out.println("Brak wystarczających środków lub niepoprawna kwota do wypłaty.");
         return this.saldo;
     }
-    @Override public boolean przelew(String nrKontaAdresata, Double kwota){
-        //Uzupełnić 
-        return true;
-        
+    @Override public void przelew(int nrKontaAdresata, Double kwota){
+        Transakcja t = new Transakcja(this.nrKonta, nrKontaAdresata, kwota);
+        t.wykonaj();
     }
     @Override public double getSaldo(){
         return this.saldo;

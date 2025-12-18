@@ -29,10 +29,9 @@ public class KontoOsobiste implements Konto {
         System.out.println("Kwota przekracza dostępny limit debetu (" + limitDebetu + ").");
         return saldo;
     }
-    @Override public boolean przelew(String nrKontaAdresata, Double kwota){
-        //Uzupełnić 
-        return true;
-        
+    @Override public void przelew(int nrKontaAdresata, Double kwota){
+        Transakcja t = new Transakcja(this.nrKonta, nrKontaAdresata, kwota);
+        t.wykonaj();
     }
     @Override public double getSaldo(){
         return this.saldo;
