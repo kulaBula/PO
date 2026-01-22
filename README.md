@@ -1,2 +1,1 @@
-Projekt Aplikacji Banowej
-![Diagram UML projektu](Diagram UML.png)
+![Diagram UML](UML Diagram.png)
