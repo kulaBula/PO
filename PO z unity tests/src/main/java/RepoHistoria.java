@@ -1,44 +1,7 @@
-// Klasa odpowiedzialna za zapisywanie i odczytywanie historii (robienie wyciągu)
 import java.sql.*;
 import java.time.LocalDateTime;
 
 public class RepoHistoria {
-    public RepoHistoria() {
-        inicjalizujBaze(); // Wywołujemy tworzenie tabeli przy każdym utworzeniu obiektu repozytorium
-    }
-
-    private void inicjalizujBaze() {
-        String sql = "CREATE TABLE IF NOT EXISTS historia (" +
-                     "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                     "id_nadawcy INTEGER, " +
-                     "id_adresata INTEGER, " +
-                     "kwota DOUBLE, " +
-                     "data TEXT, " +
-                     "typ TEXT)";
-        try (Connection conn = ConnectorBazaHistoria.getConnection();
-             Statement stmt = conn.createStatement()) {
-            stmt.execute(sql);
-        } catch (SQLException e) {
-            System.err.println("Błąd inicjalizacji bazy historii: " + e.getMessage());
-        }
-    }
-    //zastąpiona funkcja
-    /*public void inicjalizujBaze() {
-    String sql = "CREATE TABLE IF NOT EXISTS historia (" +
-                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                 "id_nadawcy INTEGER, " +
-                 "id_adresata INTEGER, " +
-                 "kwota DOUBLE, " +
-                 "data TEXT, " +
-                 "typ TEXT)";
-    try (Connection conn = HistoriaDBConnector.getConnection();
-         Statement stmt = conn.createStatement()) {
-        stmt.execute(sql);
-    } catch (SQLException e) {
-        System.err.println("Błąd inicjalizacji bazy historii: " + e.getMessage());
-    }
-}*/
-    
     public void zapiszTransakcje(int nadawca, int odbiorca, double kwota, String typ) {
         String sql = "INSERT INTO historia (id_nadawcy, id_adresata, kwota, data, typ) VALUES(?, ?, ?, ?, ?)";
         

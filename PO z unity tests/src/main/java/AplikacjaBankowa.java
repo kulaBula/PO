@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class AplikacjaBankowa {
     public static void main(String[] args) {
         BankService bankService = BankService.getInstance();
-        RepoKlienci klienciRepo = new RepoKlienci();
+        //RepoKlienci klienciRepo = new RepoKlienci();
         // Potrzebujemy dostępu do repozytorium kont, aby wyświetlić listę
         RepoKonta kontaRepo = new RepoKonta(); 
         
@@ -27,7 +27,7 @@ public class AplikacjaBankowa {
                     System.out.print("Podaj hasło: ");
                     String hasloLogin = scanner.nextLine();
 
-                    Klient zalogowanyKlient = klienciRepo.zaloguj(peselLogin, hasloLogin);
+                    Klient zalogowanyKlient = bankService.zalogujKlienta(peselLogin, hasloLogin);
 
                     if (zalogowanyKlient != null) {
                         System.out.println("\nWitaj " + zalogowanyKlient.imie + " " + zalogowanyKlient.nazwisko + "!");
@@ -45,8 +45,7 @@ public class AplikacjaBankowa {
                     System.out.print("Email: "); String email = scanner.nextLine();
                     System.out.print("Hasło: "); String hasloReg = scanner.nextLine();
 
-                    Klient nowyKlient = new Klient(imie, nazwisko, peselReg, email, hasloReg);
-                    klienciRepo.dodajKlienta(nowyKlient);
+                    bankService.zarejestrujKlienta(imie, nazwisko, peselReg, email, hasloReg);
                     break;
 
                 case "3":
@@ -76,7 +75,7 @@ public class AplikacjaBankowa {
             switch (opcja) {
                 case "1":
                     // Wyświetlenie kont tylko tego użytkownika
-                    kontaRepo.wyswietlKontaKlienta(klient.pesel);
+                    bankService.wyswietlKontaKlienta(klient.pesel);
                     break;
 
                 case "2":
@@ -109,12 +108,12 @@ public class AplikacjaBankowa {
                 case "3":
                     try {
                         System.out.println("Wybierz konto, z którego chcesz wykonać przelew: ");
-                        kontaRepo.wyswietlKontaKlienta(klient.pesel);
+                        bankService.wyswietlKontaKlienta(klient.pesel);
         
                         System.out.print("Numer Twojego konta: ");
                         int kontoNadawcyId = Integer.parseInt(scanner.nextLine()); // Bezpieczniejsze niż nextInt()
 
-                        Konto aktywneKonto = kontaRepo.zaladujKonto(kontoNadawcyId, klient.pesel);
+                        Konto aktywneKonto = bankService.pobierzKontoKlienta(kontoNadawcyId, klient.pesel);
 
                         if (aktywneKonto != null) {
                             System.out.print("Podaj numer konta odbiorcy: ");
@@ -141,7 +140,7 @@ public class AplikacjaBankowa {
                     System.out.print("Podaj numer swojego konta do wyciągu: ");
                     int idKonta = Integer.parseInt(scanner.nextLine());
                     // Sprawdzamy czy konto należy do zalogowanego klienta
-                    if (kontaRepo.zaladujKonto(idKonta, klient.pesel) != null) {
+                    if (bankService.pobierzKontoKlienta(idKonta, klient.pesel) != null) {
                         new RepoHistoria().wyswietlWyciag(idKonta);
                     } else {
                         System.out.println("Nieprawdłowy numer konta.");

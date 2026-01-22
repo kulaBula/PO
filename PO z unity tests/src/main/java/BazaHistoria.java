@@ -1,19 +1,20 @@
 import java.sql.*;
 
-public class BazaKont {
+public class BazaHistoria {
     //private static final String URL = "jdbc:sqlite:./bazaKont.db";
     public static void main(String[] args){
-        try(Connection conn = ConnectorBazaKont.getConnection();
+        try(Connection conn = ConnectorBazaHistoria.getConnection();
         Statement stmt = conn.createStatement()) {
             System.out.println("Połączono z bazą SQLite!");
             System.out.println("\n--- 1. Tworzenie tabeli ---");
             // Uwaga: W SQLite używamy INTEGER PRIMARY KEY AUTOINCREMENT
-            String createTableSQLO = "CREATE TABLE IF NOT EXISTS konta (" +
-                    "id INTEGER PRIMARY KEY AUTOINCREMENT, " + //nr konta
-                    "nrPesel TEXT, " + //nr pesel aby powiązać konta z klientami
-                    "typ TEXT, " + 
-                    "limitDebetu FLOAT, " +
-                    "saldo FLOAT)";
+            String createTableSQLO = "CREATE TABLE IF NOT EXISTS historia (" +
+                     "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                     "id_nadawcy INTEGER, " +
+                     "id_adresata INTEGER, " +
+                     "kwota DOUBLE, " +
+                     "data TEXT, " +
+                     "typ TEXT)";
             stmt.execute(createTableSQLO);
             System.out.println("Tabela gotowa.");
 
